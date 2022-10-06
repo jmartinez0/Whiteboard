@@ -11,8 +11,8 @@
     <children>
         <TextField fx:id="TFuser" promptText="User ID" />
       <TextField fx:id="TFpass" promptText="Password" />
-      <TextArea fx:id="TAtest" prefHeight="200.0" prefWidth="200.0" />
-        <HBox prefHeight="25.0" prefWidth="99.0">
+      <TextArea fx:id="TAtest" prefHeight="57.0" prefWidth="149.0" />
+        <HBox prefHeight="0.0" prefWidth="96.0">
             <children>
                 <Button mnemonicParsing="false" onAction="#handlelogin" text="Sign In" />
             </children>

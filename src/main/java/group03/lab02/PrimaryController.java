@@ -13,18 +13,19 @@ public class PrimaryController {
 
     @FXML
     private TextArea TAtest;
+    
     @FXML
     private TextField TFuser;
+    
     @FXML
     private TextField TFpass;
 
     @FXML
     protected void handlelogin() {
-        System.out.println("button pressed");
         login();
     }
 
-    @FXML
+    
     public void login() {
         //Scanner scan = new Scanner (new File("the\\dir\\myFile.extension"));
         Scanner keyboard = new Scanner(System.in);
