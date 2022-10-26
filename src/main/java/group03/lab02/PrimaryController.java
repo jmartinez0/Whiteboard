@@ -8,15 +8,14 @@ import javafx.scene.control.TextField;
 
 public class PrimaryController {
 
-    private String user;
-    private String pass;
-
+    //private String user;
+    //private String pass;
     @FXML
     private TextArea TAtest;
-    
+
     @FXML
     private TextField TFuser;
-    
+
     @FXML
     private TextField TFpass;
 
@@ -25,18 +24,27 @@ public class PrimaryController {
         login();
     }
 
-    
     public void login() {
         //Scanner scan = new Scanner (new File("the\\dir\\myFile.extension"));
         Scanner keyboard = new Scanner(System.in);
 
-        user = "user";
-        pass = "123";
+        Users userList = new Users();
 
-        if (TFuser.getText().equals(user) && TFpass.getText().equals(pass)) {
-            TAtest.setText("your login message");
+        //Admin
+        userList.add(1, "Admin555", "puppies");
+
+        //Student
+        userList.add(3, "ImTheStudent", "kittens");
+
+        User theUser = userList.get(TFuser.getText());
+
+        if (theUser != null) {
+
+                TAtest.setText(theUser.login(TFpass.getText()));
+
         } else {
-            TAtest.setText("your error message");
+            TAtest.setText("User does not exist");
+
         }
     }
 
