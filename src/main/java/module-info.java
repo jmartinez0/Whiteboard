@@ -3,5 +3,5 @@ module group03.lab02 {
     requires javafx.fxml;
 
     opens group03.lab02 to javafx.fxml;
-    exports group03.lab02;
+    exports com.mycompany.whiteboard;
 }

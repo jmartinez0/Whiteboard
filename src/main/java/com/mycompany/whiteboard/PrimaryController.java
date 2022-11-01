@@ -1,4 +1,4 @@
-package group03.lab02;
+package com.mycompany.whiteboard;
 
 import java.io.IOException;
 import java.util.Scanner;
