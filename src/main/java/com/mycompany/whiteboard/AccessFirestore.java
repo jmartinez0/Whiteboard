@@ -1,7 +1,5 @@
 package com.mycompany.whiteboard;
 
-import com.mycompany.mvvmexample.App;
-import viewmodel.AccessDataViewModel;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
@@ -32,6 +30,8 @@ public class AccessFirestore {
     @FXML
     private TextField nameField;
     @FXML
+    private TextField majorField;
+    @FXML
     private Button writeButton;
     @FXML
     private Button readButton;
@@ -59,23 +59,23 @@ public class AccessFirestore {
 
         @FXML
     private void readRecord(ActionEvent event) {
-        readFirebase();
+        readFirestore();
     }
     
     public void addData() {
-
         DocumentReference docRef = App.fstore.collection("Students").document(UUID.randomUUID().toString());
         // Add document data  with id "alovelace" using a hashmap
         Map<String, Object> data = new HashMap<>();
         data.put("Username", usernameField.getText());
         data.put("Password", passwordField.getText());
         data.put("Name", nameField.getText());
-        //data.put("ID", Integer.parseInt(ageField.getText()));
+        data.put("Major", majorField.getText());
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
     }
     
-        public boolean readFirebase()
+    
+        public boolean readFirestore()
          {
              key = false;
 
@@ -97,7 +97,7 @@ public class AccessFirestore {
                     System.out.println(document.getId() + " => " + document.getData().get("Name"));
                     user = new User(String.valueOf(document.getData().get("Name")), 
                             document.getData().get("Username").toString(),
-                            Integer.parseInt(document.getData().get("Password").toString()));
+                            (document.getData().get("Password").toString()));
                     listOfUsers.add(user);
                 }
             }
