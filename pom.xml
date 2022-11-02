@@ -36,7 +36,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>group03.lab02.App</mainClass>
+                    <mainClass>com.mycompany.whiteboard.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>
