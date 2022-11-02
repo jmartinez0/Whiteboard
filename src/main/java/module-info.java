@@ -1,7 +1,7 @@
-module group03.lab02 {
+module com.mycompany.whiteboard {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens group03.lab02 to javafx.fxml;
+    opens com.mycompany.whiteboard to javafx.fxml;
     exports com.mycompany.whiteboard;
 }
