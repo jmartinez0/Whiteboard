@@ -4,4 +4,5 @@ module com.mycompany.whiteboard {
 
     opens com.mycompany.whiteboard to javafx.fxml;
     exports com.mycompany.whiteboard;
+    
 }

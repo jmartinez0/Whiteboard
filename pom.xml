@@ -30,6 +30,7 @@
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-firestore</artifactId>
             <version>3.6.0</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
     <build>
