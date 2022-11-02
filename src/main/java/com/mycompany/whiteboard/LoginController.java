@@ -25,4 +25,19 @@ public class LoginController {
         App.setRoot("student");
     }
     
+    @FXML
+    private void showAdminRegister() throws IOException {
+        App.setRoot("registerAdmin");
+    }
+    
+    @FXML
+    private void showFacultyRegister() throws IOException {
+        App.setRoot("registerFaculty");
+    }
+    
+    @FXML
+    private void showStudentRegister() throws IOException {
+        App.setRoot("registerStudent");
+    }
+    
 }
