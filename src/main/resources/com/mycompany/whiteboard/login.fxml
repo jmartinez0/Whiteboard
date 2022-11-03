@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.LoginController">
+   <children>
+      <Pane prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <Button layoutX="595.0" layoutY="362.0" mnemonicParsing="false" onAction="#switchToAdmin" text="Switch to Admin" />
+            <Button layoutX="593.0" layoutY="399.0" mnemonicParsing="false" onAction="#switchToFaculty" text="Switch to Faculty" />
+            <Button layoutX="591.0" layoutY="328.0" mnemonicParsing="false" onAction="#switchToStudent" text="Switch to Student" />
+         </children>
+      </Pane>
+   </children>
+</VBox>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
