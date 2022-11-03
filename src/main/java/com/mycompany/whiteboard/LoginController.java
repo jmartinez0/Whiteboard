@@ -24,7 +24,7 @@ public class LoginController {
     private void switchToStudent() throws IOException {
         App.setRoot("student");
     }
-    
+
     @FXML
     private void showAdminRegister() throws IOException {
         App.setRoot("registerAdmin");
