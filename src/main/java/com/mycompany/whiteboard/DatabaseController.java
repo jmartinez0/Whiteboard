@@ -60,36 +60,39 @@ public class DatabaseController {
     
     @FXML
     public void addStudentData() {
-        DocumentReference docRef = App.fstore.collection("Students").document(UUID.randomUUID().toString());
+        DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
         // Add document data  with id "alovelace" using a hashmap
         Map<String, Object> data = new HashMap<>();
         data.put("Username", usernameField.getText());
         data.put("Password", passwordField.getText());
         data.put("Name", nameField.getText());
         data.put("Major", majorField.getText());
+        data.put("AccessLevel", 0);
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
     }
     
     @FXML
     public void addFacultyData() {
-        DocumentReference docRef = App.fstore.collection("Faculty").document(UUID.randomUUID().toString());
+        DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
         // Add document data  with id "alovelace" using a hashmap
         Map<String, Object> data = new HashMap<>();
         data.put("Username", usernameField.getText());
         data.put("Password", passwordField.getText());
         data.put("Name", nameField.getText());
+        data.put("AccessLevel", 1);
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
     }
     
     @FXML
     public void addAdminData() {
-        DocumentReference docRef = App.fstore.collection("Admins").document(UUID.randomUUID().toString());
+        DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
         // Add document data  with id "alovelace" using a hashmap
         Map<String, Object> data = new HashMap<>();
         data.put("Username", usernameField.getText());
         data.put("Password", passwordField.getText());
+        data.put("AccessLevel", 2);
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
     }

@@ -20,7 +20,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         fstore = contxtFirebase.firebase();
-        scene = new Scene(loadFXML("login"), 640, 480);
+        scene = new Scene(loadFXML("login"), 1024, 576);
         stage.setTitle("Whiteboard");
         stage.setScene(scene);
         stage.show();
