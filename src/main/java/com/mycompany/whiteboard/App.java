@@ -14,12 +14,12 @@ import java.io.IOException;
  */
 public class App extends Application {
     public static Firestore fstore;
-    private final FirestoreContext contxtFirebase = new FirestoreContext();
+    private final FirestoreContext context = new FirestoreContext();
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        fstore = contxtFirebase.firebase();
+        fstore = context.firebase();
         scene = new Scene(loadFXML("login"), 1024, 576);
         stage.setTitle("Whiteboard");
         stage.setScene(scene);
