@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- Group is used to group all these items together -->
+	<group android:checkableBehavior="single">
+
+		<!-- Three items are added as name of three portals -->
+		<!-- Portal number 1- Home -->
+		<!-- menu category is used as secondary so that backstack
+		(going back by pressing back button) can be used -->
+		<item
+			android:id="@+id/nav_home"
+			android:icon="@drawable/home"
+			android:menuCategory="secondary"
+			android:title="@string/menu_home" />
+
+		<!-- Portal number 2- Practice -->
+		<item
+			android:id="@+id/nav_gallery"
+			android:icon="@drawable/practice_gfg"
+			android:menuCategory="secondary"
+			android:title="Practice" />
+
+		<!-- Portal number 3- Contribute -->
+		<item
+			android:id="@+id/nav_slideshow"
+			android:icon="@drawable/contribute_gfg"
+			android:menuCategory="secondary"
+			android:title="Contribute" />
+	</group>
+</menu>
