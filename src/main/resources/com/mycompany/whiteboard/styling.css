@@ -1,3 +1,19 @@
 .label {
     -fx-font: 13px "Helvetica";
 }
+
+.text-field {
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-font: 13px "Helvetica";
+    -fx-background-color: lightgray,white;
+}
+
+.vbox {
+    -fx-background-color: red;
+}
+
+.signup {
+    -fx-text-fill: royalblue;
+    -fx-cursor: hand;
+}
