@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         fstore = context.firebase();
-        scene = new Scene(loadFXML("login"), 1024, 576);
+        scene = new Scene(loadFXML("LogIn"), 500, 500);
         stage.setTitle("Whiteboard");
         stage.setScene(scene);
         stage.show();
