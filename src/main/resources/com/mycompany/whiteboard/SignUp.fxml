@@ -11,22 +11,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: white;" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.LogInController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: white;" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.SignUpController">
    <children>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="450.0" prefWidth="500.0" spacing="15.0" stylesheets="@styling.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="500.0" prefWidth="500.0" spacing="15.0" stylesheets="@styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="whiteboardLogoImageView" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@WhiteboardLogo.png" />
                </image>
             </ImageView>
-            <Label text="Log in to Whiteboard" />
+            <Label text="Sign up for Whiteboard" />
             <VBox alignment="CENTER" prefHeight="170.0" prefWidth="210.0" spacing="20.0" styleClass="vbox" stylesheets="@styling.css">
                <children>
                   <TextField fx:id="usernameField" prefHeight="28.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
                   <PasswordField fx:id="passwordField" prefHeight="28.0" prefWidth="180.0" promptText="Password" styleClass="password-field" />
-                  <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Log in" />
+                  <TextField fx:id="nameField" prefHeight="28.0" prefWidth="180.0" promptText="Full Name" styleClass="text-field" />
+                  <TextField fx:id="emailField" prefHeight="28.0" prefWidth="180.0" promptText="Email Address" styleClass="text-field" />
+                  <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Sign up" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -37,8 +38,8 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="319.0" stylesheets="@styling.css">
                <children>
-                  <Label text="Don't have an account?" />
-                  <Label fx:id="signUpLabel" onMouseClicked="#switchToSignUp" styleClass="signup" stylesheets="@styling.css" text=" Sign up" />
+                  <Label text="Already have an account?" />
+                  <Label fx:id="signUpLabel" onMouseClicked="#switchToLogIn" styleClass="signup" stylesheets="@styling.css" text=" Log in" />
                </children>
             </HBox>
          </children>

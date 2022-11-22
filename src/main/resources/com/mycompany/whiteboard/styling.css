@@ -7,13 +7,19 @@
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
     -fx-font: 14px "Helvetica";
+}
 
+.password-field {
+    -fx-background-color: lightgray,white;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-font: 14px "Helvetica";
 }
 
 .vbox {
     -fx-background-color: #f2f2f2;
-    -fx-border-color: lightgray;
     -fx-background-radius: 10px;
+    -fx-border-color: lightgray;
     -fx-border-radius: 10px;
 }
 
@@ -27,9 +33,9 @@
 }
 
 .button {
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
     -fx-background-color: #0071e3;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
     -fx-text-fill: white;
     -fx-cursor: hand;
     -fx-font: 14px "Helvetica";
