@@ -69,3 +69,24 @@
 .combo-box-popup .list-cell:filled:selected:hover {
     -fx-background-color: #0071e3;
 }
+
+.sidebar {
+    -fx-background-color: #f2f2f2;
+}
+
+.sidebar-buttons {
+    -fx-background-color: #f2f2f2;
+    -fx-text-fill: black;
+    -fx-font: 20px "Helvetica";
+    -fx-cursor: pointer;
+}
+
+.sidebar-buttons:hover {
+    -fx-background-color: #f3f3f3;
+}
+
+.whiteboard-text {
+    -fx-font-style: "Bold";
+    -fx-font: 20px "Helvetica";
+    
+}
