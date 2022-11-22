@@ -25,7 +25,7 @@
                <children>
                   <TextField fx:id="usernameField" prefHeight="28.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
                   <PasswordField fx:id="passwordField" prefHeight="28.0" prefWidth="180.0" promptText="Password" styleClass="password-field" />
-                  <Button mnemonicParsing="false" onAction="#signIn" prefHeight="28.0" prefWidth="180.0" text="Log in" />
+                  <Button fx:id="logInButton" mnemonicParsing="false" onAction="#logIn" prefHeight="28.0" prefWidth="180.0" text="Log in" />
                </children>
                <VBox.margin>
                   <Insets />
