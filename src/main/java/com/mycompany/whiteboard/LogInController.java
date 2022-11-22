@@ -27,6 +27,17 @@ public class LogInController implements Initializable {
         App.setRoot("SignUp");
     }
     
+    @FXML public void signIn() throws IOException {
+        if (usernameField.getText().equals("admin")) {
+            App.setRoot("AdminView");
+        }
+        if (usernameField.getText().equals("faculty")) {
+            App.setRoot("FacultyView");
+        }
+        if (usernameField.getText().equals("student")) {
+            App.setRoot("StudentView");
+        }
+    }
     
    
 }
