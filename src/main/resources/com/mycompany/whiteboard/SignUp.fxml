@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -26,7 +27,7 @@
                   <TextField fx:id="usernameField" prefHeight="28.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
                   <PasswordField fx:id="passwordField" prefHeight="28.0" prefWidth="180.0" promptText="Password" styleClass="password-field" />
                   <TextField fx:id="nameField" prefHeight="28.0" prefWidth="180.0" promptText="Full Name" styleClass="text-field" />
-                  <TextField fx:id="emailField" prefHeight="28.0" prefWidth="180.0" promptText="Email Address" styleClass="text-field" />
+                  <ComboBox fx:id="typeOfUserComboBox" prefWidth="150.0" promptText="Student" />
                   <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Sign up" />
                </children>
                <VBox.margin>

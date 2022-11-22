@@ -9,11 +9,19 @@
     -fx-font: 14px "Helvetica";
 }
 
+.text-field:focused {
+   -fx-background-color : #0071e3,white;
+}
+
 .password-field {
     -fx-background-color: lightgray,white;
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
     -fx-font: 14px "Helvetica";
+}
+
+.password-field:focused {
+   -fx-background-color : #0071e3,white;
 }
 
 .vbox {
@@ -47,4 +55,20 @@
 
 .button:pressed {
     -fx-background-color: #0071e3;
+}
+
+.combo-box {
+    -fx-background-color:lightgray,white;   
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-font: 14px "Helvetica";
+}
+
+.combo-box-item:focused {
+    -fx-background-color: #0071e3;
+}
+
+.context-menu {
+    -fx-background-color: white;
+    -fx-background-radius: 5 5 5 5;
 }
