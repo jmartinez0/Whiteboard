@@ -56,5 +56,6 @@ public class FacultyViewController implements Initializable {
         FirebaseApp.initializeApp(options);
 
         Bucket bucket = StorageClient.getInstance().bucket();
+        
     }
 }
