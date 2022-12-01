@@ -1,5 +1,11 @@
 package com.mycompany.whiteboard;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.storage.Bucket;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.cloud.StorageClient;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,20 +19,24 @@ import javafx.stage.Stage;
 
 public class FacultyViewController implements Initializable {
 
-    
-    @FXML private Label logOutLabel;
-    @FXML private ImageView whiteboardLogoImageView;
+    @FXML
+    private Label logOutLabel;
+    @FXML
+    private ImageView whiteboardLogoImageView;
     Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogoWhite.png"));
-    
-    @Override public void initialize(URL url, ResourceBundle rb) {
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
         whiteboardLogoImageView.setImage(whiteboardLogo);
     }
 
-    @FXML public void courses() {
+    @FXML
+    public void courses() {
 
     }
-    
-    @FXML public void logOut() throws IOException {
+
+    @FXML
+    public void logOut() throws IOException {
         Stage oldStage = (Stage) logOutLabel.getScene().getWindow();
         oldStage.close();
         Stage newStage = new Stage();
@@ -34,5 +44,17 @@ public class FacultyViewController implements Initializable {
         newStage.setTitle("Whiteboard");
         newStage.setScene(scene);
         newStage.show();
+    }
+    
+    public static void uploadfile() throws IOException{
+        FileInputStream serviceAccount = new FileInputStream("path/to/serviceAccountKey.json");
+
+        FirebaseOptions options = FirebaseOptions.builder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setStorageBucket("whiteboardcsc325.appspot.com")
+                .build();
+        FirebaseApp.initializeApp(options);
+
+        Bucket bucket = StorageClient.getInstance().bucket();
     }
 }

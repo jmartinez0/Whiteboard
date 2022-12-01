@@ -5,6 +5,7 @@ package com.mycompany.whiteboard;
  * @author juan
  */
 public class Faculty extends User {
+
     private String[] courses;
 
     public Faculty(String username, String password, String name, String[] courses) {
@@ -14,7 +15,7 @@ public class Faculty extends User {
         this.courses = courses;
         this.accessLevel = 1;
     }
-    
+
     public String[] getCourses() {
         return courses;
     }
@@ -22,5 +23,5 @@ public class Faculty extends User {
     public void setCourses(String[] courses) {
         this.courses = courses;
     }
-       
+
 }

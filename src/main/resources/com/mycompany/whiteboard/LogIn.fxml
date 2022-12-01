@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: white;" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.LogInController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: white;" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.LogInController">
    <children>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="450.0" prefWidth="500.0" spacing="15.0" stylesheets="@styling.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -25,7 +25,7 @@
                <children>
                   <TextField fx:id="usernameField" prefHeight="28.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
                   <PasswordField fx:id="passwordField" prefHeight="28.0" prefWidth="180.0" promptText="Password" styleClass="password-field" />
-                  <Button fx:id="logInButton" mnemonicParsing="false" onAction="#logIn" prefHeight="28.0" prefWidth="180.0" text="Log in" />
+                  <Button fx:id="logInButton" mnemonicParsing="false" onAction="#handleLogIn" prefHeight="28.0" prefWidth="180.0" text="Log in" />
                </children>
                <VBox.margin>
                   <Insets />

@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
  * @author juan
  */
 public class DatabaseController {
+
     @FXML
     private TextField usernameField;
     @FXML
@@ -26,12 +27,12 @@ public class DatabaseController {
     private TextField majorField;
     @FXML
     private Button writeButton;
-    
+
     @FXML
     public void homeButton() throws IOException {
         App.setRoot("login");
     }
-    
+
     @FXML
     public void addStudentData() {
         DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
@@ -44,7 +45,7 @@ public class DatabaseController {
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
     }
-    
+
     @FXML
     public void addFacultyData() {
         DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
@@ -55,7 +56,7 @@ public class DatabaseController {
         data.put("AccessLevel", 1);
         ApiFuture<WriteResult> result = docRef.set(data);
     }
-    
+
     @FXML
     public void addAdminData() {
         DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
