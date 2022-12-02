@@ -36,15 +36,14 @@ public class LogInController implements Initializable {
     public void switchToSignUp() throws IOException {
         App.setRoot("SignUp");
     }
-    
-    @FXML
-    public void handleLogIn() throws IOException {
-        
-        logIn();
-        
-    }
 
     @FXML
+    public void handleLogIn() throws IOException {
+
+        logIn();
+
+    }
+
     public void logIn() throws IOException {
         if (usernameField.getText().equals("admin")) {
             Stage oldStage = (Stage) logInButton.getScene().getWindow();

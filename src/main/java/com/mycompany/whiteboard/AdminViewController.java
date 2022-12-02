@@ -13,21 +13,30 @@ import javafx.stage.Stage;
 
 public class AdminViewController implements Initializable {
 
-    @FXML private Label logOutLabel;
-    @FXML private ImageView whiteboardLogoImageView;
+    @FXML
+    private Label logOutLabel;
+    @FXML
+    private ImageView whiteboardLogoImageView;
     Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogoWhite.png"));
 
-    
-    @Override public void initialize(URL url, ResourceBundle rb) {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
         whiteboardLogoImageView.setImage(whiteboardLogo);
     }
 
-    
-    @FXML public void manageUsers() {
+    @FXML
+    public void manageUsers() {
 
     }
 
-    @FXML public void logOut() throws IOException {
+    @FXML
+    public void handleLogOut() throws IOException {
+
+        logOut();
+
+    }
+
+    public void logOut() throws IOException {
         Stage oldStage = (Stage) logOutLabel.getScene().getWindow();
         oldStage.close();
         Stage newStage = new Stage();
@@ -36,5 +45,4 @@ public class AdminViewController implements Initializable {
         newStage.setScene(scene);
         newStage.show();
     }
-
 }

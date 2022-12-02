@@ -36,6 +36,12 @@ public class FacultyViewController implements Initializable {
     }
 
     @FXML
+    public void handleLogOut() throws IOException {
+
+        logOut();
+
+    }
+
     public void logOut() throws IOException {
         Stage oldStage = (Stage) logOutLabel.getScene().getWindow();
         oldStage.close();
@@ -45,8 +51,15 @@ public class FacultyViewController implements Initializable {
         newStage.setScene(scene);
         newStage.show();
     }
-    
-    public static void uploadfile() throws IOException{
+
+    @FXML
+    public static void handleUploadFile() throws IOException {
+
+        uploadfile();
+
+    }
+
+    public static void uploadfile() throws IOException {
         FileInputStream serviceAccount = new FileInputStream("path/to/serviceAccountKey.json");
 
         FirebaseOptions options = FirebaseOptions.builder()
@@ -56,6 +69,6 @@ public class FacultyViewController implements Initializable {
         FirebaseApp.initializeApp(options);
 
         Bucket bucket = StorageClient.getInstance().bucket();
-        
+
     }
 }

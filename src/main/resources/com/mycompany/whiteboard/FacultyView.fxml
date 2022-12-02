@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: white;" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.FacultyViewController">
+<AnchorPane prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: white;" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.FacultyViewController">
    <children>
       <HBox prefHeight="60.0" prefWidth="960.0">
          <children>
@@ -27,7 +27,7 @@
             <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="745.0" spacing="40.0" styleClass="header">
                <children>
                   <Label onMouseClicked="#courses" styleClass="header-text" text="Courses" />
-                  <Label fx:id="logOutLabel" onMouseClicked="#logOut" styleClass="header-text" text="Log Out" />
+                  <Label fx:id="logOutLabel" onMouseClicked="#handleLogOut" styleClass="header-text" text="Log Out" />
                </children>
                <padding>
                   <Insets right="40.0" />

@@ -34,6 +34,12 @@ public class DatabaseController {
     }
 
     @FXML
+    public void handleAddStudentData() {
+
+        addStudentData();
+
+    }
+
     public void addStudentData() {
         DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
         Map<String, Object> data = new HashMap<>();
@@ -47,6 +53,12 @@ public class DatabaseController {
     }
 
     @FXML
+    public void handleAddFacultyData() {
+
+        addFacultyData();
+
+    }
+
     public void addFacultyData() {
         DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
         Map<String, Object> data = new HashMap<>();
@@ -58,6 +70,12 @@ public class DatabaseController {
     }
 
     @FXML
+    public void handleAddAdminData() {
+
+        addAdminData();
+
+    }
+
     public void addAdminData() {
         DocumentReference docRef = App.fstore.collection("Users").document(UUID.randomUUID().toString());
         Map<String, Object> data = new HashMap<>();
