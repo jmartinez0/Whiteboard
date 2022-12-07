@@ -1,5 +1,7 @@
 package com.mycompany.whiteboard;
 
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,6 +36,7 @@ public class LogInController implements Initializable {
 
     @FXML
     public void switchToSignUp() throws IOException {
+        // Create a new stage to open a taller window
         Stage oldStage = (Stage) logInButton.getScene().getWindow();
         oldStage.close();
         Stage newStage = new Stage();
@@ -45,8 +48,11 @@ public class LogInController implements Initializable {
     }
 
     @FXML
-    public void logIn() throws IOException {
-        if (usernameField.getText().equals("admin")) {
+    public void logIn() throws IOException, FirebaseAuthException {
+        // Read the username field and if it's an authenticated user check if it's an admin, faculty, or student
+        UserRecord user = App.fauth.getInstance().getUser(usernameField.getText());
+        if ((boolean) user.getCustomClaims().get("admin")) {
+            // Create a new stage to open a larger window for all three views
             Stage oldStage = (Stage) logInButton.getScene().getWindow();
             oldStage.close();
             Stage newStage = new Stage();
@@ -55,8 +61,7 @@ public class LogInController implements Initializable {
             newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
             newStage.show();
-        }
-        if (usernameField.getText().equals("faculty")) {
+        } else if ((boolean) user.getCustomClaims().get("faculty")) {
             Stage oldStage = (Stage) logInButton.getScene().getWindow();
             oldStage.close();
             Stage newStage = new Stage();
@@ -65,8 +70,7 @@ public class LogInController implements Initializable {
             newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
             newStage.show();
-        }
-        if (usernameField.getText().equals("student")) {
+        } else if ((boolean) user.getCustomClaims().get("student")) {
             Stage oldStage = (Stage) logInButton.getScene().getWindow();
             oldStage.close();
             Stage newStage = new Stage();
