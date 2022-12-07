@@ -27,8 +27,9 @@
                   <TextField fx:id="usernameField" prefHeight="28.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
                   <PasswordField fx:id="passwordField" prefHeight="28.0" prefWidth="180.0" promptText="Password" styleClass="password-field" />
                   <TextField fx:id="nameField" prefHeight="28.0" prefWidth="180.0" promptText="Full Name" styleClass="text-field" />
+                  <TextField fx:id="emailField" prefHeight="28.0" prefWidth="180.0" promptText="Email" styleClass="text-field" />
                   <ComboBox fx:id="typeOfUserComboBox" prefHeight="28.0" prefWidth="180.0" promptText="Student" />
-                  <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Sign up" />
+                  <Button mnemonicParsing="false" onAction="#signUp" prefHeight="28.0" prefWidth="180.0" text="Sign up" />
                </children>
                <VBox.margin>
                   <Insets />
