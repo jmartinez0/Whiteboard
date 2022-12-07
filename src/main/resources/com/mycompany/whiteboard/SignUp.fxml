@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: white;" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.SignUpController">
+<AnchorPane prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: white;" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.SignUpController">
    <children>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="500.0" prefWidth="500.0" spacing="15.0" stylesheets="@styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="500.0" spacing="15.0" stylesheets="@styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="whiteboardLogoImageView" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -29,7 +29,7 @@
                   <TextField fx:id="nameField" prefHeight="28.0" prefWidth="180.0" promptText="Full Name" styleClass="text-field" />
                   <TextField fx:id="emailField" prefHeight="28.0" prefWidth="180.0" promptText="Email" styleClass="text-field" />
                   <ComboBox fx:id="typeOfUserComboBox" prefHeight="28.0" prefWidth="180.0" promptText="Student" />
-                  <Button mnemonicParsing="false" onAction="#signUp" prefHeight="28.0" prefWidth="180.0" text="Sign up" />
+                  <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUp" prefHeight="28.0" prefWidth="180.0" text="Sign up" />
                </children>
                <VBox.margin>
                   <Insets />

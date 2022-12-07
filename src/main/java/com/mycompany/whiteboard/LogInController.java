@@ -14,32 +14,47 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class LogInController implements Initializable {
-    
-    @FXML private TextField usernameField;
-    @FXML private PasswordField passwordField;
-    @FXML private Button logInButton;
-    @FXML private ImageView whiteboardLogoImageView;
+
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private Button logInButton;
+    @FXML
+    private ImageView whiteboardLogoImageView;
     Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogo.png"));
 
-    @Override public void initialize(URL url, ResourceBundle rb) {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
         whiteboardLogoImageView.setImage(whiteboardLogo);
         usernameField.setFocusTraversable(false);
         passwordField.setFocusTraversable(false);
     }
-    
-    @FXML public void switchToSignUp() throws IOException {
-        App.setRoot("SignUp");
+
+    @FXML
+    public void switchToSignUp() throws IOException {
+        Stage oldStage = (Stage) logInButton.getScene().getWindow();
+        oldStage.close();
+        Stage newStage = new Stage();
+        Scene scene = new Scene(App.loadFXML("SignUp"), 500, 600);
+        newStage.setTitle("Whiteboard");
+        newStage.getIcons().add(whiteboardLogo);
+        newStage.setScene(scene);
+        newStage.show();
     }
-    
-    @FXML public void logIn() throws IOException {
+
+    @FXML
+    public void logIn() throws IOException {
         if (usernameField.getText().equals("admin")) {
             Stage oldStage = (Stage) logInButton.getScene().getWindow();
             oldStage.close();
             Stage newStage = new Stage();
             Scene scene = new Scene(App.loadFXML("AdminView"), 960, 600);
             newStage.setTitle("Whiteboard");
+            newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
-            newStage.show();  
+            newStage.show();
         }
         if (usernameField.getText().equals("faculty")) {
             Stage oldStage = (Stage) logInButton.getScene().getWindow();
@@ -47,6 +62,7 @@ public class LogInController implements Initializable {
             Stage newStage = new Stage();
             Scene scene = new Scene(App.loadFXML("FacultyView"), 960, 600);
             newStage.setTitle("Whiteboard");
+            newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
             newStage.show();
         }
@@ -56,12 +72,10 @@ public class LogInController implements Initializable {
             Stage newStage = new Stage();
             Scene scene = new Scene(App.loadFXML("StudentView"), 960, 600);
             newStage.setTitle("Whiteboard");
+            newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
             newStage.show();
         }
     }
 
-   
-    
-   
 }

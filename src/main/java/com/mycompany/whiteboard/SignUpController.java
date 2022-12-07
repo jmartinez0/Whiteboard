@@ -9,11 +9,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class SignUpController implements Initializable {
 
@@ -21,6 +24,8 @@ public class SignUpController implements Initializable {
     private TextField usernameField, nameField, emailField;
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private Button signUpButton;
     @FXML
     private ComboBox typeOfUserComboBox;
     @FXML
@@ -41,7 +46,14 @@ public class SignUpController implements Initializable {
 
     @FXML
     public void switchToLogIn() throws IOException {
-        App.setRoot("LogIn");
+        Stage oldStage = (Stage) signUpButton.getScene().getWindow();
+        oldStage.close();
+        Stage newStage = new Stage();
+        Scene scene = new Scene(App.loadFXML("LogIn"), 500, 500);
+        newStage.setTitle("Whiteboard");
+        newStage.getIcons().add(whiteboardLogo);
+        newStage.setScene(scene);
+        newStage.show();
     }
 
     public void signUp() {
