@@ -1,8 +1,13 @@
 package com.mycompany.whiteboard;
 
+import com.google.firebase.auth.ExportedUserRecord;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.ListUsersPage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -13,21 +18,29 @@ import javafx.stage.Stage;
 
 public class AdminViewController implements Initializable {
 
-    @FXML private Label logOutLabel, nameLabel;
-    @FXML private ImageView whiteboardLogoImageView;
+    @FXML
+    private Label logOutLabel, nameLabel;
+    @FXML
+    private ImageView whiteboardLogoImageView;
     Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogoWhite.png"));
 
-    
-    @Override public void initialize(URL url, ResourceBundle rb) {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
         whiteboardLogoImageView.setImage(whiteboardLogo);
+        try {
+            listAllUsers();
+        } catch (FirebaseAuthException ex) {
+            Logger.getLogger(AdminViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    
-    @FXML public void updateName(String username) {
+    @FXML
+    public void updateName(String username) {
         nameLabel.setText(username);
     }
 
-    @FXML public void logOut() throws IOException {
+    @FXML
+    public void logOut() throws IOException {
         Stage oldStage = (Stage) logOutLabel.getScene().getWindow();
         oldStage.close();
         Stage newStage = new Stage();
@@ -35,6 +48,24 @@ public class AdminViewController implements Initializable {
         newStage.setTitle("Whiteboard");
         newStage.setScene(scene);
         newStage.show();
+    }
+
+    public void listAllUsers() throws FirebaseAuthException {
+        ListUsersPage page = App.fauth.getInstance().listUsers(null);
+        while (page != null) {
+            for (ExportedUserRecord user : page.getValues()) {
+                System.out.println("User: " + user.getUid());
+                System.out.println("email: " + user.getEmail());
+                System.out.println("full name: " + user.getDisplayName());
+                checkTypeOfUser(user);
+            }
+            page = page.getNextPage();
+        }
+    }
+    
+    public String checkTypeOfUser(ExportedUserRecord user) {
+        System.out.println(user.getCustomClaims());
+        return "s";
     }
 
 }
