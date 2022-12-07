@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class AdminViewController implements Initializable {
 
-    @FXML private Label logOutLabel;
+    @FXML private Label logOutLabel, nameLabel;
     @FXML private ImageView whiteboardLogoImageView;
     Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogoWhite.png"));
 
@@ -23,8 +23,8 @@ public class AdminViewController implements Initializable {
     }
 
     
-    @FXML public void manageUsers() {
-
+    @FXML public void updateName(String username) {
+        nameLabel.setText(username);
     }
 
     @FXML public void logOut() throws IOException {

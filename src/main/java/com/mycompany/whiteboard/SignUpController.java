@@ -35,10 +35,7 @@ public class SignUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         whiteboardLogoImageView.setImage(whiteboardLogo);
-        usernameField.setFocusTraversable(false);
-        passwordField.setFocusTraversable(false);
-        nameField.setFocusTraversable(false);
-        emailField.setFocusTraversable(false);
+        
         String[] options = {"Student", "Faculty"};
         typeOfUserComboBox.getItems().addAll(options);
         typeOfUserComboBox.getSelectionModel().selectFirst(); // All new users are students by default

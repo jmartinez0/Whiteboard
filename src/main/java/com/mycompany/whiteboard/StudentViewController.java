@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class StudentViewController implements Initializable {
     
     
-    @FXML private Label logOutLabel;
+    @FXML private Label logOutLabel, nameLabel;
     @FXML private ImageView whiteboardLogoImageView;
     Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogoWhite.png"));
     
@@ -22,6 +22,10 @@ public class StudentViewController implements Initializable {
         whiteboardLogoImageView.setImage(whiteboardLogo);
     }
 
+    @FXML public void updateName(String username) {
+        nameLabel.setText(username);
+    }
+    
     @FXML public void courses() {
 
     }

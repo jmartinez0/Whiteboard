@@ -23,8 +23,8 @@
             <Label text="Log in to Whiteboard" />
             <VBox alignment="CENTER" prefHeight="170.0" prefWidth="210.0" spacing="20.0" styleClass="vbox" stylesheets="@styling.css">
                <children>
-                  <TextField fx:id="usernameField" prefHeight="28.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
-                  <PasswordField fx:id="passwordField" prefHeight="28.0" prefWidth="180.0" promptText="Password" styleClass="password-field" />
+                  <TextField fx:id="usernameField" focusTraversable="false" prefHeight="28.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
+                  <PasswordField fx:id="passwordField" focusTraversable="false" prefHeight="28.0" prefWidth="180.0" promptText="Password" styleClass="password-field" />
                   <Button fx:id="logInButton" mnemonicParsing="false" onAction="#logIn" prefHeight="28.0" prefWidth="180.0" text="Log in" />
                </children>
                <VBox.margin>

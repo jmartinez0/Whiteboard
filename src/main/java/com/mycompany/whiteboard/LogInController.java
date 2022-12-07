@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -30,8 +32,6 @@ public class LogInController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         whiteboardLogoImageView.setImage(whiteboardLogo);
-        usernameField.setFocusTraversable(false);
-        passwordField.setFocusTraversable(false);
     }
 
     @FXML
@@ -55,8 +55,13 @@ public class LogInController implements Initializable {
             // Create a new stage to open a larger window for all three views
             Stage oldStage = (Stage) logInButton.getScene().getWindow();
             oldStage.close();
+            // Share name to the next stage
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminView.fxml"));
+            Parent admin = loader.load();
+            AdminViewController adminController = loader.getController();
+            adminController.updateName(user.getDisplayName());
             Stage newStage = new Stage();
-            Scene scene = new Scene(App.loadFXML("AdminView"), 960, 600);
+            Scene scene = new Scene(admin, 960, 600);
             newStage.setTitle("Whiteboard");
             newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
@@ -64,8 +69,12 @@ public class LogInController implements Initializable {
         } else if ((boolean) user.getCustomClaims().get("faculty")) {
             Stage oldStage = (Stage) logInButton.getScene().getWindow();
             oldStage.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FacultyView.fxml"));
+            Parent faculty = loader.load();
+            FacultyViewController facultyController = loader.getController();
+            facultyController.updateName(user.getDisplayName());
             Stage newStage = new Stage();
-            Scene scene = new Scene(App.loadFXML("FacultyView"), 960, 600);
+            Scene scene = new Scene(faculty, 960, 600);
             newStage.setTitle("Whiteboard");
             newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
@@ -73,8 +82,12 @@ public class LogInController implements Initializable {
         } else if ((boolean) user.getCustomClaims().get("student")) {
             Stage oldStage = (Stage) logInButton.getScene().getWindow();
             oldStage.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentView.fxml"));
+            Parent student = loader.load();
+            StudentViewController studentController = loader.getController();
+            studentController.updateName(user.getDisplayName());
             Stage newStage = new Stage();
-            Scene scene = new Scene(App.loadFXML("StudentView"), 960, 600);
+            Scene scene = new Scene(student, 960, 600);
             newStage.setTitle("Whiteboard");
             newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);

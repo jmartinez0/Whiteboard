@@ -24,11 +24,11 @@
             <Label text="Sign up for Whiteboard" />
             <VBox alignment="CENTER" prefHeight="170.0" prefWidth="210.0" spacing="20.0" styleClass="vbox" stylesheets="@styling.css">
                <children>
-                  <TextField fx:id="usernameField" prefHeight="28.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
-                  <PasswordField fx:id="passwordField" prefHeight="28.0" prefWidth="180.0" promptText="Password" styleClass="password-field" />
-                  <TextField fx:id="nameField" prefHeight="28.0" prefWidth="180.0" promptText="Full Name" styleClass="text-field" />
-                  <TextField fx:id="emailField" prefHeight="28.0" prefWidth="180.0" promptText="Email" styleClass="text-field" />
-                  <ComboBox fx:id="typeOfUserComboBox" prefHeight="28.0" prefWidth="180.0" promptText="Student" />
+                  <TextField fx:id="usernameField" focusTraversable="false" prefHeight="28.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
+                  <PasswordField fx:id="passwordField" focusTraversable="false" prefHeight="28.0" prefWidth="180.0" promptText="Password" styleClass="password-field" />
+                  <TextField fx:id="nameField" focusTraversable="false" prefHeight="28.0" prefWidth="180.0" promptText="Full Name" styleClass="text-field" />
+                  <TextField fx:id="emailField" focusTraversable="false" prefHeight="28.0" prefWidth="180.0" promptText="Email" styleClass="text-field" />
+                  <ComboBox fx:id="typeOfUserComboBox" focusTraversable="false" prefHeight="28.0" prefWidth="180.0" promptText="Student" />
                   <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUp" prefHeight="28.0" prefWidth="180.0" text="Sign up" />
                </children>
                <VBox.margin>
