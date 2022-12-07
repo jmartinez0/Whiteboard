@@ -1,6 +1,7 @@
 package com.mycompany.whiteboard;
 
 import com.google.cloud.firestore.Firestore;
+import com.google.firebase.auth.FirebaseAuth;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,17 +9,22 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 public class App extends Application {
     public static Firestore fstore;
+    public static FirebaseAuth fauth;
     private final FirestoreContext context = new FirestoreContext();
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
         fstore = context.firebase();
-        scene = new Scene(loadFXML("login"), 1024, 576);
+        fauth = FirebaseAuth.getInstance();
+        scene = new Scene(loadFXML("LogIn"), 500, 500);
+        Image whiteboardIcon = new Image(getClass().getResourceAsStream("WhiteboardLogo.png"));
         stage.setTitle("Whiteboard");
+        stage.getIcons().add(whiteboardIcon);
         stage.setScene(scene);
         stage.show();
     }
@@ -27,7 +33,7 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
