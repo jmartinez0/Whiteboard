@@ -34,16 +34,17 @@ public class LogInController implements Initializable {
 
     @FXML
     public void switchToSignUp() throws IOException {
-        App.setRoot("SignUp");
+        Stage oldStage = (Stage) logInButton.getScene().getWindow();
+        oldStage.close();
+        Stage newStage = new Stage();
+        Scene scene = new Scene(App.loadFXML("SignUp"), 500, 600);
+        newStage.setTitle("Whiteboard");
+        newStage.getIcons().add(whiteboardLogo);
+        newStage.setScene(scene);
+        newStage.show();
     }
 
     @FXML
-    public void handleLogIn() throws IOException {
-
-        logIn();
-
-    }
-
     public void logIn() throws IOException {
         if (usernameField.getText().equals("admin")) {
             Stage oldStage = (Stage) logInButton.getScene().getWindow();
@@ -51,6 +52,7 @@ public class LogInController implements Initializable {
             Stage newStage = new Stage();
             Scene scene = new Scene(App.loadFXML("AdminView"), 960, 600);
             newStage.setTitle("Whiteboard");
+            newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
             newStage.show();
         }
@@ -60,6 +62,7 @@ public class LogInController implements Initializable {
             Stage newStage = new Stage();
             Scene scene = new Scene(App.loadFXML("FacultyView"), 960, 600);
             newStage.setTitle("Whiteboard");
+            newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
             newStage.show();
         }
@@ -69,6 +72,7 @@ public class LogInController implements Initializable {
             Stage newStage = new Stage();
             Scene scene = new Scene(App.loadFXML("StudentView"), 960, 600);
             newStage.setTitle("Whiteboard");
+            newStage.getIcons().add(whiteboardLogo);
             newStage.setScene(scene);
             newStage.show();
         }
