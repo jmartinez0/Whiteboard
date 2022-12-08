@@ -2,19 +2,24 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: #f2f2f2;" stylesheets="@styling.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.whiteboard.AdminViewController">
    <children>
-      <HBox prefHeight="600.0" prefWidth="961.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox layoutX="250.0" layoutY="6.0" prefHeight="594.0" prefWidth="710.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox prefHeight="600.0" prefWidth="187.0" style="-fx-background-color: white;" styleClass="side-bar">
                <children>
@@ -58,28 +63,54 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fillWidth="false" prefHeight="600.0" prefWidth="770.0" spacing="10.0">
+            <StackPane prefHeight="600.0" prefWidth="825.0">
                <children>
-                  <Label fx:id="headerLabel" styleClass="sidebar-label" text="Manage Users" />
-                  <TableView fx:id="table" prefHeight="620.0" prefWidth="699.0">
-                    <columns>
-                      <TableColumn fx:id="usernameColumn" prefWidth="174.0" styleClass="column" text="Username" />
-                      <TableColumn fx:id="emailColumn" prefWidth="174.0" styleClass="column" text="Email" />
-                        <TableColumn fx:id="fullNameColumn" prefWidth="174.0" styleClass="column" text="Full Name" />
-                        <TableColumn fx:id="typeOfUserColumn" prefWidth="174.0" styleClass="column" text="Type" />
-                    </columns>
-                  </TableView>
-                  <HBox prefHeight="91.0" prefWidth="717.0" spacing="10.0">
+                  <VBox fx:id="manageUsersScreen" fillWidth="false" prefHeight="600.0" prefWidth="611.0" spacing="10.0" visible="false">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#modifyUser" text="Modify User" />
-                        <Button mnemonicParsing="false" styleClass="delete-button" text="Delete User" />
+                        <Label fx:id="headerLabel" styleClass="sidebar-label" text="Manage Users" />
+                        <TableView fx:id="table" prefHeight="620.0" prefWidth="699.0">
+                          <columns>
+                            <TableColumn fx:id="usernameColumn" prefWidth="174.0" styleClass="column" text="Username" />
+                            <TableColumn fx:id="emailColumn" prefWidth="174.0" styleClass="column" text="Email" />
+                              <TableColumn fx:id="fullNameColumn" prefWidth="174.0" styleClass="column" text="Full Name" />
+                              <TableColumn fx:id="typeOfUserColumn" prefWidth="174.0" styleClass="column" text="Type" />
+                          </columns>
+                        </TableView>
+                        <HBox prefHeight="91.0" prefWidth="717.0" spacing="10.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#modifyUser" text="Modify User" />
+                              <Button mnemonicParsing="false" onAction="#deleteUser" styleClass="delete-button" text="Delete User" />
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                     <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="createUsersScreen" fillWidth="false" prefHeight="600.0" prefWidth="645.0" spacing="10.0">
+                     <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="sidebar-label" text="Create a new user" />
+                        <VBox alignment="BASELINE_LEFT" fillWidth="false" prefHeight="297.0" prefWidth="720.0" spacing="20.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" styleClass="vbox">
+                           <children>
+                              <TextField fx:id="usernameField" focusTraversable="false" promptText="Username" />
+                              <PasswordField fx:id="passwordField" promptText="Password" />
+                              <TextField fx:id="nameField" focusTraversable="false" promptText="Full Name" />
+                              <TextField fx:id="emailField" promptText="Email" />
+                              <ComboBox fx:id="typeOfUserComboBox" prefHeight="25.0" prefWidth="175.0" promptText="Student" />
+                              <Button mnemonicParsing="false" onAction="#createUser" text="Create user" />
+                              <Label fx:id="userCreateLabel" prefHeight="25.0" prefWidth="713.0" styleClass="createuserlabel">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </padding>
-            </VBox>
+            </StackPane>
          </children>
       </HBox>
    </children>

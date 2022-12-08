@@ -4,8 +4,11 @@ import com.google.firebase.auth.ExportedUserRecord;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.ListUsersPage;
 import com.google.firebase.auth.UserRecord;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,16 +21,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AdminViewController implements Initializable {
 
+    @FXML
+    private VBox manageUsersScreen, createUsersScreen;
     @FXML
     private Button manageUsersButton, createUsersButton, logOutButton;
     @FXML
@@ -35,7 +44,13 @@ public class AdminViewController implements Initializable {
     @FXML
     private TableColumn<User, String> usernameColumn, emailColumn, fullNameColumn, typeOfUserColumn;
     @FXML
-    private Label nameLabel, headerLabel;
+    private Label nameLabel, userCreateLabel;
+    @FXML
+    private TextField usernameField, emailField, nameField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private ComboBox typeOfUserComboBox;
     @FXML
     private ImageView whiteboardLogoImageView;
     Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogo.png"));
@@ -46,6 +61,9 @@ public class AdminViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         whiteboardLogoImageView.setImage(whiteboardLogo);
+        String[] options = {"Student", "Faculty", "Admin"};
+        typeOfUserComboBox.getItems().addAll(options);
+        typeOfUserComboBox.getSelectionModel().selectFirst(); // All new users are students by default
         manageUsers();
     }
 
@@ -58,6 +76,8 @@ public class AdminViewController implements Initializable {
     public void manageUsers() {
         manageUsersButton.setStyle("-fx-background-color: #0071e3;" + "-fx-text-fill: white;");
         createUsersButton.setStyle("-fx-background-color: white;" + "-fx-text-fill: black;");
+        manageUsersScreen.setVisible(true);
+        createUsersScreen.setVisible(false);
         try {
             listAllUsers();
         } catch (FirebaseAuthException ex) {
@@ -69,7 +89,8 @@ public class AdminViewController implements Initializable {
     public void createUsers() {
         manageUsersButton.setStyle("-fx-background-color: white;" + "-fx-text-fill: black;");
         createUsersButton.setStyle("-fx-background-color: #0071e3;" + "-fx-text-fill: white;");
-        headerLabel.setText("Create a user");
+        createUsersScreen.setVisible(true);
+        manageUsersScreen.setVisible(false);
     }
 
     @FXML
@@ -94,7 +115,6 @@ public class AdminViewController implements Initializable {
         while (page != null) {
             for (ExportedUserRecord user : page.getValues()) {
                 UserRecord userRecord = App.fauth.getInstance().getUser(user.getUid());
-                System.out.println(user.getEmail());
                 currentUser = new User(user.getUid(), user.getEmail(), user.getDisplayName(), checkTypeOfUser(userRecord));
                 listOfUsers = table.getItems();
                 listOfUsers.add(currentUser);
@@ -132,6 +152,80 @@ public class AdminViewController implements Initializable {
         newStage.getIcons().add(whiteboardLogo);
         newStage.setScene(scene);
         newStage.show();
+    }
+
+    @FXML
+    public void deleteUser() throws FirebaseAuthException {
+        currentUser = table.getSelectionModel().getSelectedItem();
+        App.fauth.getInstance().deleteUser(currentUser.getUsername());
+        listAllUsers();
+    }
+
+    @FXML
+    public void createUser() throws IOException, FirebaseAuthException {
+        // Make a new user record create request
+        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
+                .setUid(usernameField.getText().trim())
+                .setPassword(passwordField.getText().trim())
+                .setDisplayName(nameField.getText().trim())
+                .setEmail(emailField.getText().trim());
+        try {
+            // Make a new userRecord instance and use the data from the create request
+            UserRecord userRecord;
+            userRecord = App.fauth.createUser(request);
+            System.out.println("Successfully created new user: " + userRecord.getUid());
+            // Read the combo box to determine if the new user is a student or faculty
+            if (typeOfUserComboBox.getValue().equals("Faculty")) {
+                Map<String, Object> claims = new HashMap<>();
+                claims.put("faculty", true);
+                App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
+                claims.put("admin", false); // Set the other claims to false so they are not null when trying to log in
+                App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
+                claims.put("student", false);
+                App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
+                userCreateLabel.setText("Successfully created new user");
+                userCreateLabel.setStyle("-fx-text-fill: green");
+                usernameField.clear();
+                emailField.clear();
+                nameField.clear();
+                passwordField.clear();
+            }
+            if (typeOfUserComboBox.getValue().equals("Student")) {
+                Map<String, Object> claims = new HashMap<>();
+                claims.put("student", true);
+                App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
+                claims.put("admin", false);
+                App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
+                claims.put("faculty", false);
+                App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
+                userCreateLabel.setText("Successfully created new user");
+                userCreateLabel.setStyle("-fx-text-fill: green");
+                usernameField.clear();
+                emailField.clear();
+                nameField.clear();
+                passwordField.clear();
+            }
+            if (typeOfUserComboBox.getValue().equals("Admin")) {
+                Map<String, Object> claims = new HashMap<>();
+                claims.put("student", false);
+                App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
+                claims.put("admin", true);
+                App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
+                claims.put("faculty", false);
+                App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
+                userCreateLabel.setText("Successfully created new user");
+                userCreateLabel.setStyle("-fx-text-fill: green");
+                usernameField.clear();
+                emailField.clear();
+                nameField.clear();
+                passwordField.clear();
+            }
+
+        } catch (FirebaseAuthException ex) {
+            System.out.println("Could not create new user");
+            userCreateLabel.setText("Could not create new user");
+            userCreateLabel.setStyle("-fx-text-fill: #db2727");
+        }
     }
 
 }

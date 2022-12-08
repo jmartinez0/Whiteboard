@@ -89,6 +89,19 @@
     -fx-text-fill: black;
 }
 
+.confirm-button {
+    -fx-background-color: #0071e3;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-font: 14px "Helvetica";
+}
+
+.confirm-button:pressed {
+    -fx-cursor:default;
+}
+
 .delete-button {
     -fx-background-color: #db2727;
     -fx-background-radius: 20px;
