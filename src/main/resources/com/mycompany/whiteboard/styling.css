@@ -153,3 +153,10 @@
 .scroll-bar:vertical .thumb{
     -fx-background-color: #dadada;  
 }
+
+.blank-vbox {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}

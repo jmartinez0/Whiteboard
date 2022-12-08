@@ -182,8 +182,8 @@ public class AdminViewController implements Initializable {
                 App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
                 claims.put("student", false);
                 App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
-                userCreateLabel.setText("Successfully created new user");
-                userCreateLabel.setStyle("-fx-text-fill: green");
+                errorLabel.setText("Successfully created new user");
+                errorLabel.setStyle("-fx-text-fill: green");
                 usernameField.clear();
                 emailField.clear();
                 nameField.clear();
@@ -197,8 +197,8 @@ public class AdminViewController implements Initializable {
                 App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
                 claims.put("faculty", false);
                 App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
-                userCreateLabel.setText("Successfully created new user");
-                userCreateLabel.setStyle("-fx-text-fill: green");
+                errorLabel.setText("Successfully created new user");
+                errorLabel.setStyle("-fx-text-fill: green");
                 usernameField.clear();
                 emailField.clear();
                 nameField.clear();
@@ -212,8 +212,8 @@ public class AdminViewController implements Initializable {
                 App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
                 claims.put("faculty", false);
                 App.fauth.getInstance().setCustomUserClaims(userRecord.getUid(), claims);
-                userCreateLabel.setText("Successfully created new user");
-                userCreateLabel.setStyle("-fx-text-fill: green");
+                errorLabel.setText("Successfully created new user");
+                errorLabel.setStyle("-fx-text-fill: green");
                 usernameField.clear();
                 emailField.clear();
                 nameField.clear();
@@ -222,7 +222,6 @@ public class AdminViewController implements Initializable {
         } catch (FirebaseAuthException ex) {
             errorLabel.setStyle("-fx-text-fill: #db2727");
             errorLabel.setText("Username/Email already in use");
-            userCreateLabel.setStyle("-fx-text-fill: #db2727");
         } catch (IllegalArgumentException iae) {
             if (usernameField.getText().isEmpty() ||
                 passwordField.getText().isEmpty() ||
