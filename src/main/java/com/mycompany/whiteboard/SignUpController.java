@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -27,6 +28,8 @@ public class SignUpController implements Initializable {
     @FXML
     private Button signUpButton;
     @FXML
+    private Label errorLabel;
+    @FXML
     private ComboBox<String> typeOfUserComboBox;
     @FXML
     ImageView whiteboardLogoImageView;
@@ -35,7 +38,7 @@ public class SignUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         whiteboardLogoImageView.setImage(whiteboardLogo);
-        
+
         String[] options = {"Student", "Faculty"};
         typeOfUserComboBox.getItems().addAll(options);
         typeOfUserComboBox.getSelectionModel().selectFirst(); // All new users are students by default
@@ -53,20 +56,18 @@ public class SignUpController implements Initializable {
         newStage.setScene(scene);
         newStage.show();
     }
-    
+
     @FXML
     public void signUp() throws IOException, FirebaseAuthException {
-        // Make a new user record create request
-        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
-                .setUid(usernameField.getText().trim())
-                .setPassword(passwordField.getText().trim())
-                .setDisplayName(nameField.getText().trim())
-                .setEmail(emailField.getText().trim());
         try {
+            // Make a new user record create request
+            UserRecord.CreateRequest request = new UserRecord.CreateRequest()
+                    .setUid(usernameField.getText().trim())
+                    .setPassword(passwordField.getText().trim())
+                    .setDisplayName(nameField.getText().trim())
+                    .setEmail(emailField.getText().trim());
             // Make a new userRecord instance and use the data from the create request
-            UserRecord userRecord;
-            userRecord = App.fauth.createUser(request);
-            System.out.println("Successfully created new user: " + userRecord.getUid());
+            UserRecord userRecord = App.fauth.createUser(request);
             // Read the combo box to determine if the new user is a student or faculty
             if (typeOfUserComboBox.getValue().equals("Faculty")) {
                 Map<String, Object> claims = new HashMap<>();
@@ -95,8 +96,26 @@ public class SignUpController implements Initializable {
             newStage.setScene(scene);
             newStage.show();
         } catch (FirebaseAuthException ex) {
-            System.out.println("Could not create new user");
+            errorLabel.setStyle("-fx-text-fill: #db2727");
+            errorLabel.setText("Username/Email already in use");
+        } catch (IllegalArgumentException iae) {
+            if (usernameField.getText().isEmpty() ||           
+                passwordField.getText().isEmpty() ||
+                nameField.getText().isEmpty() ||
+                emailField.getText().isEmpty()) {
+                errorLabel.setStyle("-fx-text-fill: #db2727");
+                errorLabel.setText("All fields must be filled out");
+            } else if (passwordField.getText().length() < 6) {
+                errorLabel.setStyle("-fx-text-fill: #db2727");
+                errorLabel.setText("Password must be at least 6 characters long");
+            } else {
+                errorLabel.setStyle("-fx-text-fill: #db2727");
+                errorLabel.setText("Email format must be name@example.com");
+            }
         }
+             
+
+        
     }
 
 }

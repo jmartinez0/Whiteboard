@@ -87,28 +87,35 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="createUsersScreen" fillWidth="false" prefHeight="600.0" prefWidth="645.0" spacing="10.0">
-                     <padding>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                     </padding>
+                  <HBox fx:id="createUsersScreen" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label styleClass="sidebar-label" text="Create a new user" />
-                        <VBox alignment="BASELINE_LEFT" fillWidth="false" prefHeight="297.0" prefWidth="720.0" spacing="20.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" styleClass="vbox">
+                        <VBox alignment="BASELINE_LEFT" fillWidth="false" prefHeight="288.0" prefWidth="312.0" spacing="20.0" style="-fx-border-color: transparent;" styleClass="vbox">
                            <children>
+                              <Label styleClass="sidebar-label" text="Create a new user" />
                               <TextField fx:id="usernameField" focusTraversable="false" promptText="Username" />
                               <PasswordField fx:id="passwordField" promptText="Password" />
                               <TextField fx:id="nameField" focusTraversable="false" promptText="Full Name" />
                               <TextField fx:id="emailField" promptText="Email" />
                               <ComboBox fx:id="typeOfUserComboBox" prefHeight="25.0" prefWidth="175.0" promptText="Student" />
-                              <Button mnemonicParsing="false" onAction="#createUser" text="Create user" />
-                              <Label fx:id="userCreateLabel" prefHeight="25.0" prefWidth="713.0" styleClass="createuserlabel">
+                              <Button mnemonicParsing="false" onAction="#createUser" prefWidth="175.0" text="Create user" />
+                              <Label fx:id="errorLabel" prefHeight="25.0" prefWidth="713.0" styleClass="createuserlabel">
                                  <font>
                                     <Font size="20.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="BASELINE_LEFT" fillWidth="false" prefHeight="288.0" prefWidth="312.0" spacing="20.0" style="-fx-border-color: transparent;" styleClass="vbox">
+                           <children>
+                              <Label styleClass="sidebar-label" text="Rules for new users" />
+                              <VBox prefHeight="267.0" prefWidth="340.0" />
                            </children>
                         </VBox>
                      </children>
-                  </VBox>
+                     <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                     </padding>
+                  </HBox>
                </children>
             </StackPane>
          </children>

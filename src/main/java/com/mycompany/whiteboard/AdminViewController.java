@@ -4,7 +4,6 @@ import com.google.firebase.auth.ExportedUserRecord;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.ListUsersPage;
 import com.google.firebase.auth.UserRecord;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -12,7 +11,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,13 +28,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AdminViewController implements Initializable {
 
     @FXML
-    private VBox manageUsersScreen, createUsersScreen;
+    private VBox manageUsersScreen;
+    @FXML
+    private HBox createUsersScreen;
     @FXML
     private Button manageUsersButton, createUsersButton, logOutButton;
     @FXML
@@ -44,7 +45,7 @@ public class AdminViewController implements Initializable {
     @FXML
     private TableColumn<User, String> usernameColumn, emailColumn, fullNameColumn, typeOfUserColumn;
     @FXML
-    private Label nameLabel, userCreateLabel;
+    private Label nameLabel, userCreateLabel, errorLabel;
     @FXML
     private TextField usernameField, emailField, nameField;
     @FXML
@@ -163,18 +164,16 @@ public class AdminViewController implements Initializable {
 
     @FXML
     public void createUser() throws IOException, FirebaseAuthException {
-        // Make a new user record create request
-        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
+        try {
+            // Make a new user record create request
+            UserRecord.CreateRequest request = new UserRecord.CreateRequest()
                 .setUid(usernameField.getText().trim())
                 .setPassword(passwordField.getText().trim())
                 .setDisplayName(nameField.getText().trim())
                 .setEmail(emailField.getText().trim());
-        try {
-            // Make a new userRecord instance and use the data from the create request
-            UserRecord userRecord;
-            userRecord = App.fauth.createUser(request);
-            System.out.println("Successfully created new user: " + userRecord.getUid());
-            // Read the combo box to determine if the new user is a student or faculty
+            // Make a new UserRecord instance and use the data from the create request
+            UserRecord userRecord = App.fauth.createUser(request);
+            // Read the combo box to determine if the new user is a student, faculty, or admin
             if (typeOfUserComboBox.getValue().equals("Faculty")) {
                 Map<String, Object> claims = new HashMap<>();
                 claims.put("faculty", true);
@@ -220,11 +219,24 @@ public class AdminViewController implements Initializable {
                 nameField.clear();
                 passwordField.clear();
             }
-
         } catch (FirebaseAuthException ex) {
-            System.out.println("Could not create new user");
-            userCreateLabel.setText("Could not create new user");
+            errorLabel.setStyle("-fx-text-fill: #db2727");
+            errorLabel.setText("Username/Email already in use");
             userCreateLabel.setStyle("-fx-text-fill: #db2727");
+        } catch (IllegalArgumentException iae) {
+            if (usernameField.getText().isEmpty() ||
+                passwordField.getText().isEmpty() ||
+                nameField.getText().isEmpty() ||
+                emailField.getText().isEmpty()) {
+                errorLabel.setStyle("-fx-text-fill: #db2727");
+                errorLabel.setText("All fields must be filled out");
+            } else if (passwordField.getText().length() < 6) {
+                errorLabel.setStyle("-fx-text-fill: #db2727");
+                errorLabel.setText("Password must be at least 6 characters long");
+            } else {
+                errorLabel.setStyle("-fx-text-fill: #db2727");
+                errorLabel.setText("Email format must be name@example.com");
+            }
         }
     }
 
