@@ -60,7 +60,7 @@
             </VBox>
             <VBox fillWidth="false" prefHeight="600.0" prefWidth="770.0" spacing="10.0">
                <children>
-                  <Label styleClass="sidebar-label" text="Manage Users" />
+                  <Label fx:id="headerLabel" styleClass="sidebar-label" text="Manage Users" />
                   <TableView fx:id="table" prefHeight="620.0" prefWidth="699.0">
                     <columns>
                       <TableColumn fx:id="usernameColumn" prefWidth="174.0" styleClass="column" text="Username" />
@@ -71,7 +71,7 @@
                   </TableView>
                   <HBox prefHeight="91.0" prefWidth="717.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Modify User" />
+                        <Button mnemonicParsing="false" onAction="#modifyUser" text="Modify User" />
                         <Button mnemonicParsing="false" styleClass="delete-button" text="Delete User" />
                      </children>
                   </HBox>

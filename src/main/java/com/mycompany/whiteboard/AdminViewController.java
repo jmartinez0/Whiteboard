@@ -13,7 +13,9 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,7 +35,7 @@ public class AdminViewController implements Initializable {
     @FXML
     private TableColumn<User, String> usernameColumn, emailColumn, fullNameColumn, typeOfUserColumn;
     @FXML
-    private Label nameLabel;
+    private Label nameLabel, headerLabel;
     @FXML
     private ImageView whiteboardLogoImageView;
     Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogo.png"));
@@ -54,8 +56,8 @@ public class AdminViewController implements Initializable {
 
     @FXML
     public void manageUsers() {
-        Platform.runLater(() -> manageUsersButton.setStyle("-fx-background-color: #0071e3;" + "-fx-text-fill: white;"));
-        Platform.runLater(() -> createUsersButton.setStyle("-fx-background-color: white;" + "-fx-text-fill: black;"));
+        manageUsersButton.setStyle("-fx-background-color: #0071e3;" + "-fx-text-fill: white;");
+        createUsersButton.setStyle("-fx-background-color: white;" + "-fx-text-fill: black;");
         try {
             listAllUsers();
         } catch (FirebaseAuthException ex) {
@@ -67,6 +69,7 @@ public class AdminViewController implements Initializable {
     public void createUsers() {
         manageUsersButton.setStyle("-fx-background-color: white;" + "-fx-text-fill: black;");
         createUsersButton.setStyle("-fx-background-color: #0071e3;" + "-fx-text-fill: white;");
+        headerLabel.setText("Create a user");
     }
 
     @FXML
@@ -112,6 +115,23 @@ public class AdminViewController implements Initializable {
             return "Student";
         }
         return null;
+    }
+
+    @FXML
+    public void modifyUser() throws IOException, FirebaseAuthException {
+        currentUser = table.getSelectionModel().getSelectedItem();
+        UserRecord user = App.fauth.getInstance().getUser(currentUser.getUsername());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyUser.fxml"));
+        Parent modify = loader.load();
+        ModifyUserController modifyUserController = loader.getController();
+        modifyUserController.initializeTextFields(user.getEmail(), user.getDisplayName());
+        modifyUserController.updateName(user.getUid());
+        Stage newStage = new Stage();
+        Scene scene = new Scene(modify, 300, 300);
+        newStage.setTitle("Modify User");
+        newStage.getIcons().add(whiteboardLogo);
+        newStage.setScene(scene);
+        newStage.show();
     }
 
 }
