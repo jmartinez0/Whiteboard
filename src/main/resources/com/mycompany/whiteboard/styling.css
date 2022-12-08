@@ -1,5 +1,6 @@
 .label {
     -fx-font: 14px "Helvetica";
+    -fx-text-fill: black;
 }
 
 .text-field {
@@ -10,7 +11,7 @@
 }
 
 .text-field:focused {
-   -fx-background-color : #0071e3,white;
+    -fx-background-color : #0071e3,white;
 }
 
 .password-field {
@@ -21,7 +22,7 @@
 }
 
 .password-field:focused {
-   -fx-background-color : #0071e3,white;
+    -fx-background-color : #0071e3,white;
 }
 
 .vbox {
@@ -36,10 +37,6 @@
     -fx-cursor: hand;
 }
 
-.signup:hover {
-    -fx-text-fill: #0091e3;
-}
-
 .button {
     -fx-background-color: #0071e3;
     -fx-background-radius: 20px;
@@ -49,16 +46,8 @@
     -fx-font: 14px "Helvetica";
 }
 
-.button:hover {
-    -fx-background-color: #0091e3;
-}
-
-.button:pressed {
-    -fx-background-color: #0071e3;
-}
-
 .combo-box {
-    -fx-background-color:lightgray,white;   
+    -fx-background-color:lightgray,white;
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
     -fx-font: 14px "Helvetica";
@@ -70,12 +59,57 @@
     -fx-background-color: #0071e3;
 }
 
-.header {
-    -fx-background-color: #0071e3;
+.sidebar {
+    -fx-background-color: #f2f2f2;
 }
 
-.header-text {
+.sidebar-button {
+    -fx-background-color: white;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+    -fx-font: 14px "Helvetica";
+}
+
+
+.sidebar-button:selected {
+    -fx-background-color: #0071e3;
     -fx-text-fill: white;
+}
+
+.sidebar-text {
+    -fx-text-fill: black;
     -fx-font: 14px "Helvetica";
     -fx-cursor: hand;
 }
+
+.sidebar-label {
+    -fx-font: 20px "Helvetica";
+    -fx-text-fill: black;
+}
+
+.delete-button {
+    -fx-background-color: #db2727;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-font: 14px "Helvetica";
+}
+
+.table-view {
+    -fx-background-radius: 0 0 20 20;
+    -fx-border-radius: 0 0 20 20;
+    -fx-border-color: #dadada;
+    -fx-font: 14px "Helvetica";
+
+}
+
+
+.column {
+    -fx-border-color: #c1c1c1;
+    -fx-background-color: #dadada;
+}
+
+

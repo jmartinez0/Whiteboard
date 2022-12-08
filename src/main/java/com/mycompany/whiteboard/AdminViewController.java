@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,14 +20,17 @@ import javafx.stage.Stage;
 public class AdminViewController implements Initializable {
 
     @FXML
-    private Label logOutLabel, nameLabel;
+    private Button manageUsersButton, createUsersButton, logOutButton;
+    @FXML
+    private Label nameLabel;
     @FXML
     private ImageView whiteboardLogoImageView;
-    Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogoWhite.png"));
+    Image whiteboardLogo = new Image(getClass().getResourceAsStream("WhiteboardLogo.png"));
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         whiteboardLogoImageView.setImage(whiteboardLogo);
+        manageUsers();
         try {
             listAllUsers();
         } catch (FirebaseAuthException ex) {
@@ -40,8 +44,20 @@ public class AdminViewController implements Initializable {
     }
 
     @FXML
+    public void manageUsers() {
+        manageUsersButton.setStyle("-fx-background-color: #0071e3;" + "-fx-text-fill: white;");
+        createUsersButton.setStyle("-fx-background-color: white;" + "-fx-text-fill: black;");
+    }
+    
+    @FXML
+    public void createUsers() {
+        manageUsersButton.setStyle("-fx-background-color: white;" + "-fx-text-fill: black;");
+        createUsersButton.setStyle("-fx-background-color: #0071e3;" + "-fx-text-fill: white;");
+    }
+
+    @FXML
     public void logOut() throws IOException {
-        Stage oldStage = (Stage) logOutLabel.getScene().getWindow();
+        Stage oldStage = (Stage) logOutButton.getScene().getWindow();
         oldStage.close();
         Stage newStage = new Stage();
         Scene scene = new Scene(App.loadFXML("LogIn"), 500, 500);
