@@ -12,7 +12,6 @@ public class Faculty extends User {
         this.password = password;
         this.name = name;
         this.courses = courses;
-        this.accessLevel = 1;
     }
     
     public String[] getCourses() {

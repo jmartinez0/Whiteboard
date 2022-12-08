@@ -61,12 +61,12 @@
             <VBox fillWidth="false" prefHeight="600.0" prefWidth="770.0" spacing="10.0">
                <children>
                   <Label styleClass="sidebar-label" text="Manage Users" />
-                  <TableView prefHeight="620.0" prefWidth="699.0">
+                  <TableView fx:id="table" prefHeight="620.0" prefWidth="699.0">
                     <columns>
-                      <TableColumn prefWidth="174.0" styleClass="column" text="Username" />
-                      <TableColumn prefWidth="174.0" styleClass="column" text="Email" />
-                        <TableColumn prefWidth="174.0" styleClass="column" text="Full Name" />
-                        <TableColumn prefWidth="174.0" styleClass="column" text="Type" />
+                      <TableColumn fx:id="usernameColumn" prefWidth="174.0" styleClass="column" text="Username" />
+                      <TableColumn fx:id="emailColumn" prefWidth="174.0" styleClass="column" text="Email" />
+                        <TableColumn fx:id="fullNameColumn" prefWidth="174.0" styleClass="column" text="Full Name" />
+                        <TableColumn fx:id="typeOfUserColumn" prefWidth="174.0" styleClass="column" text="Type" />
                     </columns>
                   </TableView>
                   <HBox prefHeight="91.0" prefWidth="717.0" spacing="10.0">

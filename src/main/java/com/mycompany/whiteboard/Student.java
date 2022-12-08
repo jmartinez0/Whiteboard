@@ -14,7 +14,6 @@ public class Student extends User {
         this.name = name;
         this.major = major;
         this.courses = courses;
-        this.accessLevel = 0;
     }
     
     public String getMajor() {
